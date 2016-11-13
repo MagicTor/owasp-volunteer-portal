@@ -56,7 +56,7 @@ su - vagrant -c "/usr/local/bin/virtualenv $VIRTUALENV_DIR --python=/usr/bin/pyt
 
 
 cp $PROJECT_DIR/etc/local_config.yaml.sample $PROJECT_DIR/local_config.yaml
-sed '/^secret_key/ d' $PROJECT_DIR/local_config.yaml > $PROJECT_DIR/tmp.yaml && mv tmp.yaml local_config.yaml
+sed '/^secret_key/ d' $PROJECT_DIR/local_config.yaml > $PROJECT_DIR/tmp.yaml && mv $PROJECT_DIR/tmp.yaml $PROJECT_DIR/local_config.yaml
 UUID=a63eb5ef-3b25-4595-846a-5d97d99486f0
 echo "secret_key: $UUID" >> $PROJECT_DIR/local_config.yaml
 
@@ -81,8 +81,22 @@ su - vagrant -c "source $VIRTUALENV_DIR/bin/activate && cd $PROJECT_DIR && \
 
 
 # Install gulp
-su - -c "ln -s /usr/bin/nodejs /usr/bin/node && \
-   cd $PROJECT_DIR/apps/volontulo && \
+echo "Installing Gulp"
+su - -c "ln -s /usr/bin/nodejs /usr/bin/node"
+#su - vagrant -c "npm install gulp"
+su - vagrant -c "cd $PROJECT_DIR/apps/volontulo && \
    npm install && \
-   npm install -g gulp && \
-   gulp build"
+   node_modules/.bin/gulp build"
+
+
+# Finish
+cat << "EOF"
+
+///     #//(  &(//////#    //(          (//////#@    (///    (/(  //////////( ///     (//   ///         &(//////#
+#//(    ///  /////#/////#  //(        ///////////(   (////   (/(     #//#     ///     (//   ///        ////// ////#
+ (//%  #//( (////( (#////% //(       (///#%/# (///#  (/////& (/(     #//#     ///     (//   ///       (/////# /////
+  /// %//(  ///%/    %///( //(        /(&@&( #(& /(  (// ///&(/(     #//#     (//     (//   ///       ///#     #///
+  #/////(   (///#    ////  //(         #///%(&/////  (//  (////(     #//#     (//     (//   ///       #///      (//
+   /////     ()#///(&///   //(&&&&&&@   #////////    (//   #///(     #//#     #///#////     ///&&&&@   #///(((((//
+
+EOF
