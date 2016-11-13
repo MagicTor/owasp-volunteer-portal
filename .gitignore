@@ -74,3 +74,4 @@ static
 # SQLite database
 *.sqlite3
 *.sqlite
+/volontulo/settings/local.py
