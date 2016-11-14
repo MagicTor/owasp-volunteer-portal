@@ -1,21 +1,21 @@
 {
   "private": true,
   "engines": {
-    "node": ">=0.10.0"
+    "node": ">=1.4.0"
   },
   "devDependencies": {
-    "gulp": "^3.6.0",
-    "gulp-util": "^3.0.6",
-    "gulp-iconify": "~0.4.0"
-  },
-  "dependencies": {
-    "lodash": "~4.16.4",
-    "through2": "~2.0.1",
-    "lodash.omit": "~4.5.0",
-    "lodash.clonedeep": "~4.5.0",
-    "vinyl-sourcemaps-apply": "~0.2.1",
-    "node-sass": "~3.10.1",
     "core-util-is": "~1.0.2",
-    "isarray": "~2.0.1"
-  }
+    "gulp": "^3.6.0",
+    "gulp-iconify": "~0.4.0",
+    "gulp-sass": "^2.3.2",
+    "gulp-util": "^3.0.6",
+    "isarray": "~2.0.1",
+    "lodash": "~4.16.4",
+    "lodash.clonedeep": "~4.5.0",
+    "lodash.omit": "~4.5.0",
+    "node-sass": "~3.10.1",
+    "through2": "~2.0.1",
+    "vinyl-sourcemaps-apply": "~0.2.1"
+  },
+  "dependencies": {}
 }

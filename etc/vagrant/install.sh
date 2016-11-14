@@ -25,7 +25,7 @@ wget https://bootstrap.pypa.io/ez_setup.py -O - | python3.4
 # supporting: jpeg, tiff, png, freetype, littlecms
 # (pip install pillow to get pillow itself, it is not in requirements.txt)
 apt-get build-dep -y python-imaging
-apt-get install -y libjpeg-dev libtiff-dev zlib1g-dev libfreetype6-dev liblcms2-dev libjpeg8 libjpeg62-dev
+apt-get install -y nodejs libjpeg-dev libtiff-dev zlib1g-dev libfreetype6-dev liblcms2-dev libjpeg8 libjpeg62-dev
 # Git (we'd rather avoid people keeping credentials for git commits in the repo, but sometimes we need it for pip requirements that aren't in PyPI)
 apt-get install -y git
 
@@ -80,10 +80,14 @@ su - vagrant -c "source $VIRTUALENV_DIR/bin/activate && cd $PROJECT_DIR && \
    ./manage.py loaddata initial/data.json --settings=volontulo_org.settings.dev"
 
 
+# Reinstall Node
+su - -c "curl -sL https://deb.nodesource.com/setup_4.x | sudo -E bash -"
+su - -c "sudo apt-get install -y nodejs"
+
 # Install gulp
 echo "Installing Gulp"
-su - -c "ln -s /usr/bin/nodejs /usr/bin/node"
-#su - vagrant -c "npm install gulp"
+# su - -c "ln -s /usr/bin/nodejs /usr/bin/node"
+# su - vagrant -c "npm install gulp"
 su - vagrant -c "cd $PROJECT_DIR/apps/volontulo && \
    npm install && \
    node_modules/.bin/gulp build"
