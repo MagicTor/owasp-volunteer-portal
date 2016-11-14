@@ -75,5 +75,4 @@ static
 *.sqlite3
 *.sqlite
 /volontulo/settings/local.py
-
-./vagrant
+./vagrant/
