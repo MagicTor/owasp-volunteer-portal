@@ -72,6 +72,7 @@ su - postgres -c "psql -c \"ALTER USER $DB_USERNAME with password '$DB_PASSWD';\
 su - postgres -c "psql -c \"ALTER ROLE  WITH LOGIN;\""
 su - postgres -c "psql -c \"CREATE DATABASE $DB_NAME WITH  TEMPLATE=template0 ENCODING='utf-8' owner $DB_USERNAME;\""
 su - postgres -c "psql -c \"ALTER USER $DB_USERNAME CREATEDB;\""  # this is needed for running tests
+su - postgres -c "psql -c \"ALTER ROLE $DB_USERNAME WITH LOGIN;\""
 
 
 # Django project setup
