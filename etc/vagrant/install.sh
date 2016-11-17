@@ -4,7 +4,7 @@
 
 # Installation settings
 
-PROJECT_NAME='volontulo'
+PROJECT_NAME=$1
 
 DB_NAME=$PROJECT_NAME
 DB_USERNAME=$PROJECT_NAME
