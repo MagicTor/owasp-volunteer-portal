@@ -75,10 +75,10 @@ su - postgres -c "psql -c \"ALTER USER $DB_USERNAME CREATEDB;\""  # this is need
 
 
 # Django project setup
-cp $PROJECT_DIR/etc/vagrant/settings.py $PROJECT_DIR/volontulo_org/settings/dev.py
+cp $PROJECT_DIR/etc/vagrant/settings.py $PROJECT_DIR/volontulo_org/settings/dev_vagrant.py
 su - vagrant -c "source $VIRTUALENV_DIR/bin/activate && cd $PROJECT_DIR && \
-   ./manage.py migrate --settings=volontulo_org.settings.dev && \
-   ./manage.py loaddata initial/data.json --settings=volontulo_org.settings.dev"
+   ./manage.py migrate --settings=volontulo_org.settings.dev_vagrant && \
+   ./manage.py loaddata initial/data.json --settings=volontulo_org.settings.dev_vagrant"
 
 
 # Reinstall Node
