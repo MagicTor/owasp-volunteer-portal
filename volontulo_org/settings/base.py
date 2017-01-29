@@ -56,6 +56,7 @@ MIDDLEWARE_CLASSES = (
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
     'django.middleware.security.SecurityMiddleware',
+    'rollbar.contrib.django.middleware.RollbarNotifierMiddleware',
 )
 
 ROOT_URLCONF = 'volontulo_org.urls'
@@ -92,6 +93,14 @@ if 'DATABASE_URL' in os.environ:
     import dj_database_url
     db_from_env = dj_database_url.config(conn_max_age=500)
     DATABASES['default'].update(db_from_env)
+    ROLLBAR = {
+        'access_token': os.environ.get('ROLLBAR_ACCESS_TOKEN', 'ROLLBAR_ACCESS_TOKEN'),
+        'environment': 'development' if DEBUG else 'production',
+        'root': BASE_DIR,
+    }
+    import rollbar
+    rollbar.init(**ROLLBAR)
+
 else:
     with open(LOCAL_CONFIG_FILEPATH, 'r') as f:
         LOCAL_CONFIG = yaml.load(f)
