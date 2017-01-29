@@ -1,4 +1,7 @@
-# volontulo
+# OWASP Volunteer Portal
+
+## Join #volunteer-portal on the <a href="https://owasp.herokuapp.com/">OWASP slack</a>
+<a href="https://owasp.herokuapp.com/"><img src="https://owasp.herokuapp.com/badge.svg"></a>
 
 ## CodeForPoznan info:
 [![Join the chat at https://gitter.im/CodeForPoznan/volontulo](https://badges.gitter.im/Join%20Chat.svg)](https://gitter.im/CodeForPoznan/volontulo?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&utm_content=badge)
