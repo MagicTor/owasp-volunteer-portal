@@ -1,6 +1,6 @@
 {% load bootstrap3 %}
 {% load staticfiles %}
-{% load cookielaw_tags %}
+
 <!DOCTYPE html>
 <html>
     <head>
@@ -16,8 +16,6 @@
 
     <body class="{% block name %}{% endblock %}">
         <script>document.body.style += ' js';</script>
-
-        {% cookielaw_banner %}
         <section class="header">
             <div class="container">
                 {% include "common/header.html" %}
@@ -39,7 +37,6 @@
 
         {% block scripts %}
             <script src="https://code.jquery.com/jquery-2.1.4.min.js"></script>
-            <script src="{% static "volontulo/javascripts/cookielaw/js/cookielaw.js" %}"></script>
             <script src="{% static "volontulo/javascripts/bootstrap.js" %}"></script>
         {% endblock %}
     </body>
