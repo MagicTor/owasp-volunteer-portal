@@ -65,9 +65,8 @@ target/
 
 # npm and gulp
 apps/volontulo/node_modules/
-apps/volontulo/static/
+#apps/volontulo/static/
 media
-static
 node_modules
 
 # Development directories / files
