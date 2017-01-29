@@ -190,7 +190,7 @@ class OffersEdit(View):
             is_edit_allowed = False
         if not is_edit_allowed:
             raise Http404()
-        return super().dispatch(request, *args, **kwargs)
+        return super(OffersEdit, self).dispatch(*args, **kwargs)
 
     @staticmethod
     @correct_slug(Offer, 'offers_edit', 'title')
