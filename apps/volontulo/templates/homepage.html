@@ -1,17 +1,17 @@
 {% extends "common/col1.html" %}
 {% load main_image %}
-{% load staticfiles %}
+{% load i18n %}
 
 {% block title %}Volontulo - podejmij pracę jako wolontariusz{% endblock %}
 
 {% block name %}home-page{% endblock %}
 
 {% block content-heading %}
-    <img class="img-responsive center-block" src="{% static 'volontulo/img/volontulo_baner.png' %}" />
+    <img class="img-responsive center-block" src="/static/volontulo/img/volontulo_baner.png" />
 {% endblock %}
 {% block content %}
     {% if offers %}
-        <h2>Dołącz do jednej z ofert:</h2>
+        <h2>{% trans "Join one of the offers:" %}</h2>
         <div class="row offer-thumbnails auto-clear">
         {% for o in offers %}
             {{ o.image }}
@@ -20,7 +20,7 @@
                 <div class="thumbnail">
                     <a href="{% url 'offers_view' o.title|slugify o.id %}" class="heading-image" style="background-image:url({{ MEDIA_URL }}{{ o.images.all|main_image }})"></a>
                     <div class="caption">
-                        <a role="button" class="btn btn-warning join-btn" href="{% url 'offers_view' o.title|slugify o.id %}">Włącz się</a>
+                        <a role="button" class="btn btn-warning join-btn" href="{% url 'offers_view' o.title|slugify o.id %}">{% trans "Turn up" %}</a>
                         <h3 class="heading">
                             <a class="" href="{% url 'offers_view' o.title|slugify o.id %}">{{ o.title }}</a>
                         </h3>
@@ -37,32 +37,32 @@
                                 <span aria-hidden="true" class="glyphicon glyphicon-time"></span>
                             </div>
                             <div class="media-body panel-body">
-                                <span class="is-inline_block"><sup>od </sup>{{ o.started_at|date:'j E Y, G:m'|default:' teraz' }}</span>
-                                <span class="is-inline_block"><sub>do </sub>{{ o.finished_at|date:'j E Y, G:m'|default:' ustalenia' }}</span>
+                                <span class="is-inline_block"><sup>{% trans "from" %} </sup>{{ o.started_at|date:'j E Y, G:m'|default:_("now") }}</span>
+                                <span class="is-inline_block"><sub>{% trans "down" %} </sub>{{ o.finished_at|date:'j E Y, G:m'|default:_("arrangements") }}</span>
                             </div>
                         </div>
-                        <div class="text-right">Organizator: <a class="text-warning" href="{% url 'organization_view' slug=o.organization.name|slugify id_=o.organization.id %}">{{ o.organization.name }}</a></div>
+                        <div class="text-right">{% trans "Organizer" %}: <a class="text-warning" href="{% url 'organization_view' slug=o.organization.name|slugify id_=o.organization.id %}">{{ o.organization.name }}</a></div>
                     </div>
                 </div>
             </div>
         {% endfor %}
         </div>
     {% else %}
-        <p class="lead">Zgłoś swoją ofertę aby znaleźć wolontariuszy do pomocy w akcji!</p>
+        <p class="lead">{% trans "Submit your offer to find volunteers to help!" %}</p>
         {% if user.is_anonymous and not user.is_authenticated %}
         <div class="media">
             <div class="media-left media-middle">
-                <a class="btn btn-primary" href="{% url 'register' %}">Załóż konto</a>
+                <a class="btn btn-primary" href="{% url 'register' %}">{% trans "Sign Up" %} </a>
             </div>
             <div class="media-left media-middle">
-                <span class="control-label">lub</span>
+                <span class="control-label">{% trans "or" %} </span>
             </div>
             <div class="media-left media-middle">
-                <a class="btn btn-primary" href="{% url 'login' %}">Zaloguj się</a>
+                <a class="btn btn-primary" href="{% url 'login' %}">{% trans "Login" %} </a>
             </div>
         </div>
         {% else %}
-            <a class="btn btn-primary" href="{% url 'offers_create' %}">Zgłoś ofertę</a>
+            <a class="btn btn-primary" href="{% url 'offers_create' %}">{% trans "Create Offer" %}</a>
         {% endif %}
     {% endif %}
 {% endblock %}

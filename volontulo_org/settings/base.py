@@ -14,6 +14,7 @@ https://docs.djangoproject.com/en/1.8/ref/settings/
 import os
 import yaml
 from unipath import Path
+from django.utils.translation import ugettext_lazy as _
 
 from django.core.exceptions import ImproperlyConfigured
 
@@ -103,7 +104,12 @@ DATABASES = {
 # Internationalization
 # https://docs.djangoproject.com/en/1.8/topics/i18n/
 
-LANGUAGE_CODE = 'pl-pl'
+LANGUAGE_CODE = 'en-us'
+
+LANGUAGES = [
+    ('po', _('Polish')),
+    ('en', _('English')),
+]
 
 TIME_ZONE = 'UTC'
 
@@ -136,3 +142,7 @@ MEDIA_URL = '/media/'
 
 # settings required if we want to use @login_required decorator
 LOGIN_URL = 'login'
+
+LOCALE_PATHS = (
+    os.path.join(os.path.dirname(__file__), "locale"),
+)
