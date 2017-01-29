@@ -1,1 +1,1 @@
-web: gunicorn volontulo_org.wsgi --log-file -
+web: gunicorn volontulo_org.wsgi --log-file=-
