@@ -22,7 +22,7 @@ msgid "Join one of the offers:"
 msgstr "Dołącz do jednej z ofert:"
 
 #: .\apps\volontulo\templates\homepage.html:23
-msgid "Turn up"
+msgid "Join"
 msgstr "Włącz się"
 
 #: .\apps\volontulo\templates\homepage.html:40
