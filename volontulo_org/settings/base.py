@@ -88,6 +88,10 @@ DATABASES = {
 }
 # Database
 # https://docs.djangoproject.com/en/1.8/ref/settings/#databases
+# Email settings
+EMAIL_HOST = 'localhost'
+EMAIL_PORT = 25
+EMAIL_USE_TLS = False
 
 if 'DATABASE_URL' in os.environ:
     import dj_database_url
@@ -100,7 +104,11 @@ if 'DATABASE_URL' in os.environ:
     }
     import rollbar
     rollbar.init(**ROLLBAR)
-
+    EMAIL_HOST = 'smtp.sendgrid.net'
+    EMAIL_HOST_USER = os.environ.get('SENDGRID_USERNAME', 'blank')
+    EMAIL_HOST_PASSWORD = os.environ.get('SENDGRID_PASSWORD', 'blank')
+    EMAIL_PORT = 587
+    EMAIL_USE_TLS = True
 else:
     with open(LOCAL_CONFIG_FILEPATH, 'r') as f:
         LOCAL_CONFIG = yaml.load(f)
@@ -140,10 +148,7 @@ USE_TZ = True
 STATIC_ROOT = os.path.join(BASE_DIR, 'static')
 STATIC_URL = '/static/'
 
-# Email settings
-EMAIL_HOST = 'localhost'
-EMAIL_PORT = 25
-EMAIL_USE_TLS = False
+
 
 
 # verify if it's required for registering user
