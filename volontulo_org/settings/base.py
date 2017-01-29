@@ -14,6 +14,7 @@ https://docs.djangoproject.com/en/1.8/ref/settings/
 import os
 import yaml
 from unipath import Path
+import dj_database_url
 from django.utils.translation import ugettext_lazy as _
 
 from django.core.exceptions import ImproperlyConfigured
@@ -27,7 +28,7 @@ LOCAL_CONFIG_FILEPATH = os.path.join(
 with open(LOCAL_CONFIG_FILEPATH, 'r') as f:
     LOCAL_CONFIG = yaml.load(f)
 
-SECRET_KEY = LOCAL_CONFIG.get('secret_key')
+SECRET_KEY = LOCAL_CONFIG.get('secret_key', os.environ.get('SECRET_KEY', 'secret_key'))
 if not SECRET_KEY:
     raise ImproperlyConfigured
 
@@ -90,16 +91,21 @@ WSGI_APPLICATION = 'volontulo_org.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/1.8/ref/settings/#databases
 
-DATABASES = {
-    'default': {
-        'ENGINE': 'django.db.backends.postgresql_psycopg2',
-        'USER': LOCAL_CONFIG['db_user'],
-        'PASSWORD': LOCAL_CONFIG['db_pass'],
-        'NAME': LOCAL_CONFIG['db_name'],
-        'HOST': LOCAL_CONFIG['db_host'],
-        'PORT': LOCAL_CONFIG['db_port'],
+if 'DATABASE_URL' in os.environ:
+    db_from_env = dj_database_url.config(conn_max_age=500)
+    DATABASES['default'].update(db_from_env)
+else:
+
+    DATABASES = {
+        'default': {
+            'ENGINE': 'django.db.backends.postgresql_psycopg2',
+            'USER': LOCAL_CONFIG['db_user'],
+            'PASSWORD': LOCAL_CONFIG['db_pass'],
+            'NAME': LOCAL_CONFIG['db_name'],
+            'HOST': LOCAL_CONFIG['db_host'],
+            'PORT': LOCAL_CONFIG['db_port'],
+        }
     }
-}
 
 # Internationalization
 # https://docs.djangoproject.com/en/1.8/topics/i18n/
