@@ -10,7 +10,7 @@
             <nav class="">
                 <h1 class="navbar-header">
                     <a href="{% url 'homepage' %}">
-                        <img src="{% static "volontulo/img/volo_logo.png" %}" alt="Volontulo" />
+                        <img src="{% static "volontulo/img/volo_logo.png" %}" alt="OWASP Volunteer Portal" />
                     </a>
                 </h1>
                 <div class="pull-right">
@@ -20,19 +20,19 @@
                     <a class="btn btn-link navbar-btn" href="{% url 'login' %}">{% trans 'Login' %}</a>
                 {% else %}
                     <div class="btn-group">
-                        <button aria-expanded="false" aria-haspopup="true" data-toggle="dropdown" class="btn btn-link dropdown-toggle" type="button">Witaj, {{ user.email }}! <span class="caret"></span></button>
+                        <button aria-expanded="false" aria-haspopup="true" data-toggle="dropdown" class="btn btn-link dropdown-toggle" type="button">{% trans 'Welcome' %}, {{ user.email }}! <span class="caret"></span></button>
                         <ul class="dropdown-menu">
                             <li>
-                                <a href="{% url 'logged_user_profile' %}">Moje konto</a>
+                                <a href="{% url 'logged_user_profile' %}">{% trans 'My account' %}</a>
                             </li>
                             {% if user.userprofile.is_administrator %}
                             <li>
-                                <a href="{% url 'admin_panel' %}">Panel administracyjny</a>
+                                <a href="{% url 'admin_panel' %}">{% trans 'Administration Panel' %}</a>
                             </li>
                             {% endif %}
                         </ul>
                     </div>
-                    <a class="btn btn-info navbar-btn"href="{% url 'logout' %}">Wyloguj <span aria-hidden="true" class="glyphicon glyphicon-log-out"></span></a>
+                    <a class="btn btn-info navbar-btn"href="{% url 'logout' %}">{% trans 'Logout' %}<span aria-hidden="true" class="glyphicon glyphicon-log-out"></span></a>
                 {% endif %}
                 </div>
             </nav>

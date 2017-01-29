@@ -33,6 +33,11 @@ Django commands
 ```
 python manage.py COMMAND --settings=volontulo_org.settings.dev
 ```
+Generate Translations:
+```
+python manage.py makemessages --ignore venv --settings=volontulo_org.settings.dev
+```
+
 
 ## Manual Project Set Up
 
